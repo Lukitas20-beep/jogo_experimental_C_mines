@@ -2,18 +2,21 @@
 //de cabeçalho seja incluído mais de uma vez, o que causaria conflitos e duplicação de definições.
 #define GAME_LOGIC_H //Define a constante GAME_LOGIC_H, garantindo que o arquivo não seja incluído mais de uma vez.
 
-#define SIZE 10 //Define o tamanho do tabuleiro como 10x10 (10 células em cada linha e coluna).
-#define MINES 10 //Define que o jogo terá 10 minas no tabuleiro.
-
 typedef struct {
     int is_mine;         // 1 se for uma mina, 0 caso contrário.
     int is_revealed;     // 1 se a célula estiver aberta.
     int is_marked;       // 1 se a célula estiver marcada.
     int mines_around;    // Número de minas ao redor.
 } Cell;
+
+extern Cell **board;
+extern int SIZE;
+extern int MINES;
+extern int score;
  
-void initialize_board(); //Função responsável por inicializar o tabuleiro, colocando as minas e 
+void initialize_board(int size, int mines); //Função responsável por inicializar o tabuleiro, colocando as minas e 
 //calculando o número de minas ao redor de cada célula.
+void free_board();
 void reveal_cell(int x, int y);//Função para revelar a célula na posição (x, y). Esta função 
 //abriria a célula, revelando se é uma mina ou o número de minas ao redor.
 void mark_cell(int x, int y);//Função para marcar ou desmarcar uma célula, indicando que o jogador 
